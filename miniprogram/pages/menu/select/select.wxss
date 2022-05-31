@@ -1,0 +1,4 @@
+/* pages/menu/select.wxss */
+text{
+  font-family: 'zpix';
+}

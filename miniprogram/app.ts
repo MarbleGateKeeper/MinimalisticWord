@@ -14,5 +14,11 @@ App<IAppOption>({
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
       },
     })
+
+    // 加载字体
+    wx.loadFontFace({
+      family:'zpix',
+      source:'https://github.com/SolidZORO/zpix-pixel-font/releases/download/v3.1.6/zpix.ttf'
+    }).then(res=>console.log(res.status))
   },
 })

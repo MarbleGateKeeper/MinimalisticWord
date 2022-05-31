@@ -1,13 +1,14 @@
 {
   "pages": [
-    "pages/index/index",
-    "pages/logs/logs"
+    "pages/menu/select/select",
+    "pages/auth/authorize"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Weixin",
-    "navigationBarTextStyle": "black"
+    "backgroundColor": "#7B7D7D",
+    "navigationBarBackgroundColor": "#7B7D7D",
+    "navigationBarTitleText": "极简单词",
+    "navigationBarTextStyle": "white"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"
