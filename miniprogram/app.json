@@ -1,7 +1,9 @@
 {
   "pages": [
-    "pages/menu/select/select",
-    "pages/auth/authorize"
+    "pages/menu/select",
+    "pages/setting/setting",
+    "pages/wordle/select",
+    "pages/wordle/basic/wordle"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -11,5 +13,27 @@
     "navigationBarTextStyle": "white"
   },
   "style": "v2",
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/menu/select",
+        "text": "背词",
+        "iconPath": "assets/icon/submit.png",
+        "selectedIconPath": "assets/icon/submit.png"
+      },
+      {
+        "pagePath": "pages/wordle/select",
+        "text": "Wordle",
+        "iconPath": "assets/icon/submit.png",
+        "selectedIconPath": "assets/icon/submit.png"
+      },
+      {
+        "pagePath": "pages/setting/setting",
+        "text": "设置",
+        "iconPath": "assets/icon/settings.png",
+        "selectedIconPath": "assets/icon/settings.png"
+      }
+    ]
+  }
 }

@@ -1,4 +1,4 @@
-// pages/auth/authorize.ts
+// pages/wordle/select.ts
 Page({
 
   /**
