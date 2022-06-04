@@ -1,4 +1,5 @@
 // pages/menu/select.ts
+
 Page({
 
   /**
@@ -12,7 +13,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-
+    // Load word collection.
+    this.loadWordBook();
   },
 
   /**
@@ -62,5 +64,11 @@ Page({
    */
   onShareAppMessage() {
 
+  },
+
+  loadWordBook() {
+    this.setData({
+      // TODO
+    });
   }
 })

@@ -1,6 +1,6 @@
 {
   "pages": [
-    "pages/menu/select",
+    "pages/word/select",
     "pages/setting/setting",
     "pages/wordle/select",
     "pages/wordle/basic/wordle"
@@ -17,7 +17,7 @@
   "tabBar": {
     "list": [
       {
-        "pagePath": "pages/menu/select",
+        "pagePath": "pages/word/select",
         "text": "背词",
         "iconPath": "assets/icon/submit.png",
         "selectedIconPath": "assets/icon/submit.png"

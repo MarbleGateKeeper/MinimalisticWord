@@ -1,3 +1,5 @@
+import { IAppOption } from "../typings"
+
 // app.ts
 App<IAppOption>({
   globalData: {},
