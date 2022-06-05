@@ -42,10 +42,13 @@
   "simulatorPluginLibVersion": {},
   "condition": {},
   "srcMiniprogramRoot": "miniprogram/",
-  "appid": "wxbbd67a1bf8ac3b81",
+  "appid": "wxd064dd0fb484b1a0",
   "libVersion": "2.24.4",
   "editorSetting": {
     "tabIndent": "insertSpaces",
     "tabSize": 2
-  }
+  },
+  "cloudbaseRoot": "cloudcontent/",
+  "cloudfunctionRoot": "cloudcontent/cloudfunction/",
+  "cloudfunctionTemplateRoot": "cloudfunctionTemplate/"
 }

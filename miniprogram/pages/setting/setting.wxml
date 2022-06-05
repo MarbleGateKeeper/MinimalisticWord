@@ -1,2 +1,17 @@
 <!--pages/setting/setting.wxml-->
-<text>pages/setting/setting.wxml</text>
+<view class="page">
+    <view class="settings">
+        <view class="setting_wordSetSize">
+            <text class="setting_wordSetSize_title">单词集大小</text>
+            <view class="setting_wordSetSize_body">
+                <slider bindchange="wordSetSizeChange" bindchanging="wordSetSizeChange" min="5" max="30" value="{{wordSetSize}}" show-value/>
+            </view>
+        </view>
+        <view class="setting_distractorSize">
+            <text class="setting_distractorSize_title">干扰项数量</text>
+            <view class="setting_distractorSize_body">
+                <slider bindchange="distractorSizeChange" bindchanging="distractorSizeChange" min="2" max="6" value="{{distractorSize}}" show-value/>
+            </view>
+        </view>
+    </view>
+</view>

@@ -1,5 +1,7 @@
 // pages/menu/select.ts
 
+import { createWordDataSet } from "../../utils/wordUtils";
+
 Page({
 
   /**
@@ -68,7 +70,7 @@ Page({
 
   loadWordBook() {
     this.setData({
-      // TODO
+      data:createWordDataSet("cet4",10)
     });
   }
 })

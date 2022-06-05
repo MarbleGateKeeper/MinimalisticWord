@@ -1,18 +1,21 @@
+import { IAppOption } from "../../../typings";
+import { WordSetting } from "../../utils/settingUtils";
+
 // pages/setting/setting.ts
 Page({
 
   /**
    * 页面的初始数据
    */
-  data: {
-
-  },
+  data: {},
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-
+    let app: IAppOption = getApp();
+    let setting = app.globalData.wordSetting;
+    this.setData(setting);
   },
 
   /**
@@ -62,5 +65,27 @@ Page({
    */
   onShareAppMessage() {
 
+  },
+
+  distractorSizeChange: function(e: WechatMiniprogram.SliderChange){
+    const app: IAppOption = getApp();
+    const setting = app.globalData.wordSetting;
+    const newSetting: WordSetting = {
+      "wordSetSize": setting.wordSetSize,
+      "distractorSize": e.detail.value
+    };
+    this.setData(newSetting)
+    app.globalData.wordSetting = newSetting;
+  },
+
+  wordSetSizeChange: function(e: WechatMiniprogram.SliderChange){
+    const app: IAppOption = getApp();
+    const setting = app.globalData.wordSetting;
+    const newSetting: WordSetting = {
+      "wordSetSize": e.detail.value,
+      "distractorSize": setting.distractorSize
+    };
+    this.setData(newSetting)
+    app.globalData.wordSetting = newSetting;
   }
 })
