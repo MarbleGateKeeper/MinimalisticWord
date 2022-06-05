@@ -10,26 +10,43 @@ exports.main = async (event, context) => {
   const type = event.type
   const size = event.size
 
-  const datas = await db.collection(type)
-  .aggregate()
-  .sample({
-    size: size
-  })
-  .end()
+  const requestSize = function(a){
+    if(a>20) return 20
+    else return a
+  }
 
-  for(var i of datas.list){
+  let ret = []
+
+  while(ret.length<size){
+    let datas = await db.collection(type)
+    .aggregate()
+    .sample({
+      size: requestSize(size)
+    })
+    .end()
+
+    if(datas.errMsg!="collection.aggregate:ok"){
+      return {
+        wordset: undefined
+      }
+    }
+
+    for(var i of datas.list){
+      if(ret.indexOf(i)==-1){
+        ret.push(i)
+      }
+      if(ret.length==size){
+        break
+      }
+    }
+  }
+
+  for(var i of ret){
     i.content = i._id
     delete i._id
   }
 
-  if(datas.errMsg=="collection.aggregate:ok"){
-    return {
-      wordset: datas.list
-    }
-  }
-  else{
-    return {
-      wordset: undefined
-    }
+  return {
+    wordset: ret
   }
 }

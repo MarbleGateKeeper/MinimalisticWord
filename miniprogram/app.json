@@ -2,8 +2,6 @@
   "pages": [
     "pages/word/select",
     "pages/setting/setting",
-    "pages/wordle/select",
-    "pages/wordle/basic/wordle",
     "pages/word/case/case"
   ],
   "window": {
@@ -20,12 +18,6 @@
       {
         "pagePath": "pages/word/select",
         "text": "背词",
-        "iconPath": "assets/icon/submit.png",
-        "selectedIconPath": "assets/icon/submit.png"
-      },
-      {
-        "pagePath": "pages/wordle/select",
-        "text": "Wordle",
         "iconPath": "assets/icon/submit.png",
         "selectedIconPath": "assets/icon/submit.png"
       },
