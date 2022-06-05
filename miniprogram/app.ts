@@ -4,8 +4,8 @@ import { IAppOption } from "../typings"
 App<IAppOption>({
   globalData: {
     wordSetting: {
-      "wordSetSize": 10,
-      "distractorSize": 3
+      wordSetSize: 10,
+      distractorSize: 3
     }
   },
   onLaunch() {

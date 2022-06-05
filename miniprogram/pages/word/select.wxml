@@ -1,3 +1,15 @@
 <!--pages/menu/select.wxml-->
-<!--这里需要一个很漂亮的列表来选择词库-->
+<view class="title">
+  <text class="title_text">请选择词库</text>
+</view>
+<view class='flex_container'>
+  <swiper hidden="{{loading}}" class='word_collection_chooser' indicator-dots='true'>
+    <swiper-item class='word_collection_item' wx:key='{{ item.item }}' wx:for='{{ collection }}'>
+      <button type="default" bindtap="selectWordCollection" data-word-book-name="{{item.item}}">{{item.name}}</button>
+    </swiper-item>
+  </swiper>
 
+  <view>
+    <loading hidden="{{!loading}}">加载词库中...</loading>
+  </view>
+</view>

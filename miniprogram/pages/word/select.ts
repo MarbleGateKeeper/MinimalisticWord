@@ -1,6 +1,7 @@
 // pages/menu/select.ts
 
-import { createWordDataSet } from "../../utils/wordUtils";
+import { IAppOption } from "../../../typings";
+import { createWordDataSet, wordBookMap } from "../../utils/wordUtils";
 
 Page({
 
@@ -8,7 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    loading: true
   },
 
   /**
@@ -16,7 +17,7 @@ Page({
    */
   onLoad() {
     // Load word collection.
-    this.loadWordBook();
+    this.loadWordCollection();
   },
 
   /**
@@ -68,13 +69,26 @@ Page({
 
   },
 
-  loadWordBook() {
-    createWordDataSet("cet4",10).then(res=>{
-      let a = res.roll(3,7)
-      this.setData({
-        data:res,
-        more:a
-      });
-    })
+  loadWordCollection: function () {
+    this.setData({
+      loading: false,
+      collection: wordBookMap
+    });
+  },
+
+  selectWordCollection: function (e: WechatMiniprogram.BaseEvent) {
+    const selected: string = e.currentTarget.dataset.wordBookName;
+    // 创建单词集
+    const app: IAppOption = getApp();
+    createWordDataSet(selected, app.globalData.wordSetting.wordSetSize).then(dataRes => {
+      // 跳转到背单词页面
+      wx.navigateTo({
+        url: "./case/case",
+        // 发送数据到背单词页面
+        success: function(navRes){
+          navRes.eventChannel.emit('acceptDataFromOpenerPage', dataRes)
+        }
+      })
+    });
   }
 })

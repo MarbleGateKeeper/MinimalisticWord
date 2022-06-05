@@ -71,8 +71,8 @@ Page({
     const app: IAppOption = getApp();
     const setting = app.globalData.wordSetting;
     const newSetting: WordSetting = {
-      "wordSetSize": setting.wordSetSize,
-      "distractorSize": e.detail.value
+      wordSetSize: setting.wordSetSize,
+      distractorSize: e.detail.value
     };
     this.setData(newSetting)
     app.globalData.wordSetting = newSetting;
@@ -82,8 +82,8 @@ Page({
     const app: IAppOption = getApp();
     const setting = app.globalData.wordSetting;
     const newSetting: WordSetting = {
-      "wordSetSize": e.detail.value,
-      "distractorSize": setting.distractorSize
+      wordSetSize: e.detail.value,
+      distractorSize: setting.distractorSize
     };
     this.setData(newSetting)
     app.globalData.wordSetting = newSetting;

@@ -3,7 +3,8 @@
     "pages/word/select",
     "pages/setting/setting",
     "pages/wordle/select",
-    "pages/wordle/basic/wordle"
+    "pages/wordle/basic/wordle",
+    "pages/word/case/case"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,15 +1,45 @@
-export const wordBookMap = {
-  "cet4": "四级单词",
-  "cet6": "六级单词",
-  "tem4": "专四单词",
-  "tem8": "专八单词",
-  "npee": "考研单词",
-  "tofel": "托福单词",
-  "oelts": "雅思单词",
-  "sat": "SAT单词",
-  "gre": "GRE单词",
-  "gmat": "GMAT单词",
-}
+export const wordBookMap = [
+  {
+    "item":"cet4",
+    "name":"四级单词"
+  },
+  {
+    "item":"cet6",
+    "name":"六级单词"
+  },
+  {
+    "item":"tem4",
+    "name":"专四单词"
+  },
+  {
+    "item":"tem8",
+    "name":"专八单词"
+  },
+  {
+    "item":"npee",
+    "name":"考研单词"
+  },
+  {
+    "item":"tofel",
+    "name":"托福单词"
+  },
+  {
+    "item":"oelts",
+    "name":"雅思单词"
+  },
+  {
+    "item":"sat",
+    "name":"SAT单词"
+  },
+  {
+    "item":"gre",
+    "name":"GRE单词"
+  },
+  {
+    "item":"gmat",
+    "name":"GMAT单词"
+  }
+]
 
 export interface WordData {
   content: string,
@@ -19,16 +49,16 @@ export interface WordData {
 // 带有固定数量的错误解释的单词数据
 export interface ShuffledWordData {
   content: string,
-  anwserCollection: Array<string>,
+  anwserCollection: string[],
   correctAnswerPosition: number
 }
 
 // 单词集合
 // 你总不能一次性把所有单词都塞进 globalData 里面吧？
 export class WordDataSet {
-  data: Array<WordData>;
-  constructor(data: Array<WordData>) {
-    this.data = data;
+  data: WordData[];
+  constructor(readIn: Array<WordData>) {
+    this.data = readIn;
   }
 
   /**
@@ -37,20 +67,20 @@ export class WordDataSet {
    * @param size 包含答案词条的数量，包括正确答案
    */
   public roll(serial: number, size: number): ShuffledWordData {
-    let anwsers: Array<string> = [this.data[serial]["meaning"]]
+    let anwsers: string[] = [this.data[serial].meaning]
     let a = 1;
     while (a < size) {
       const randomElement: WordData = this.data[Math.floor(Math.random() * this.data.length)];
       if (this.data.indexOf(randomElement) != serial) {
-        if (anwsers.indexOf(randomElement["meaning"]) == -1) {
-          anwsers.push(randomElement["meaning"]);
+        if (anwsers.indexOf(randomElement.meaning) == -1) {
+          anwsers.push(randomElement.meaning);
           a++;
         }
       }
     }
     anwsers = shuffleAnswer(anwsers)
     return {
-      content: this.data[serial]["content"],
+      content: this.data[serial].content,
       anwserCollection: anwsers,
       correctAnswerPosition: anwsers.indexOf(this.data[serial]["meaning"])
     };
