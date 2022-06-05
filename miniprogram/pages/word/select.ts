@@ -69,8 +69,12 @@ Page({
   },
 
   loadWordBook() {
-    this.setData({
-      data:createWordDataSet("cet4",10)
-    });
+    createWordDataSet("cet4",10).then(res=>{
+      let a = res.roll(3,7)
+      this.setData({
+        data:res,
+        more:a
+      });
+    })
   }
 })

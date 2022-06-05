@@ -17,7 +17,10 @@ exports.main = async (event, context) => {
   })
   .end()
 
-  console.log(datas)
+  for(var i of datas.list){
+    i.content = i._id
+    delete i._id
+  }
 
   if(datas.errMsg=="collection.aggregate:ok"){
     return {
