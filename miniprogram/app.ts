@@ -1,4 +1,5 @@
 import { IAppOption } from "../typings"
+import { standardColorScheme } from "./utils/settingUtils"
 
 // app.ts
 App<IAppOption>({
@@ -6,8 +7,10 @@ App<IAppOption>({
     wordSetting: {
       wordSetSize: 10,
       distractorSize: 3
-    }
+    },
+    colorScheme: standardColorScheme
   },
+  
   onLaunch() {
     // 展示本地存储能力
     const logs = wx.getStorageSync('logs') || []
@@ -24,5 +27,11 @@ App<IAppOption>({
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
       },
     })
+
+    // 加载字体
+    wx.loadFontFace({
+      family:'zpix',
+      source:'https://github.com/SolidZORO/zpix-pixel-font/releases/download/v3.1.6/zpix.ttf'
+    }).then(res=>console.log(res.status))
   },
 })

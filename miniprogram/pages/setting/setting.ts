@@ -1,5 +1,5 @@
 import { IAppOption } from "../../../typings";
-import { WordSetting } from "../../utils/settingUtils";
+import { ColorScheme, nightColorScheme, standardColorScheme, WordSetting } from "../../utils/settingUtils";
 
 // pages/setting/setting.ts
 Page({
@@ -14,8 +14,11 @@ Page({
    */
   onLoad() {
     let app: IAppOption = getApp();
-    let setting = app.globalData.wordSetting;
-    this.setData(setting);
+    this.setData({
+      common: app.globalData.wordSetting,
+      color: app.globalData.colorScheme,
+      nightmode: app.globalData.colorScheme == nightColorScheme
+    });
   },
 
   /**
@@ -67,25 +70,50 @@ Page({
 
   },
 
+  colorSchemeChange: function(e: WechatMiniprogram.SwitchChange){
+    const app: IAppOption = getApp();
+    const currentData = this.data as AnyObject;
+    const nv = e.detail.value;
+    let newColorScheme: ColorScheme;
+    if(nv) newColorScheme = nightColorScheme;
+    else newColorScheme = standardColorScheme;
+    this.setData({
+      common: currentData.common,
+      color: newColorScheme, 
+      nightmode: nv
+    })
+    app.globalData.colorScheme = newColorScheme;
+  },
+
   distractorSizeChange: function(e: WechatMiniprogram.SliderChange){
     const app: IAppOption = getApp();
     const setting = app.globalData.wordSetting;
+    const currentData = this.data as AnyObject;
     const newSetting: WordSetting = {
       wordSetSize: setting.wordSetSize,
       distractorSize: e.detail.value
     };
-    this.setData(newSetting)
+    this.setData({
+      common: newSetting,
+      color: currentData.color, 
+      nightmode: currentData.nightmode
+    })
     app.globalData.wordSetting = newSetting;
   },
 
   wordSetSizeChange: function(e: WechatMiniprogram.SliderChange){
     const app: IAppOption = getApp();
     const setting = app.globalData.wordSetting;
+    const currentData = this.data as AnyObject;
     const newSetting: WordSetting = {
       wordSetSize: e.detail.value,
       distractorSize: setting.distractorSize
     };
-    this.setData(newSetting)
+    this.setData({
+      common: newSetting,
+      color: currentData.color,
+      nightmode: currentData.nightmode
+    })
     app.globalData.wordSetting = newSetting;
   }
 })

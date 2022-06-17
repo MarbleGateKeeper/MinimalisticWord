@@ -16,8 +16,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    // Load word collection.
-    this.loadWordCollection();
+    let app: IAppOption = getApp();
+    this.setData({
+      // 加载配色表
+      color: app.globalData.colorScheme,
+      loading: false,
+      // 加载单词集
+      collection: wordBookMap
+    });
   },
 
   /**
@@ -31,7 +37,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    let app: IAppOption = getApp();
+    const currentData = this.data as AnyObject;
+    this.setData({
+      // 因为从设置切换回本页不是重新加载界面，所以此处要重新加载一次配色表
+      color: app.globalData.colorScheme,
+      loading: currentData.loading,
+      collection: currentData.collection
+    });
   },
 
   /**
@@ -67,13 +80,6 @@ Page({
    */
   onShareAppMessage() {
 
-  },
-
-  loadWordCollection: function () {
-    this.setData({
-      loading: false,
-      collection: wordBookMap
-    });
   },
 
   selectWordCollection: function (e: WechatMiniprogram.BaseEvent) {

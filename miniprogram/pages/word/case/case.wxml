@@ -1,14 +1,16 @@
 <!--pages/word/case/case.wxml-->
-<view class='flex_container'>
-  <view class="word_content">
-    <text class="word_content_text">{{wordset[serial].content}}\n</text>
-    <text class="word_content_hint">{{hint}}</text>
-  </view>
-  <block wx:for="{{shuffled.anwserCollection}}" wx:if="{{currentlySelected==-1}}">
-    <button class="anwser_item" type="default" bindtap="selectAnwser" data-buttom-serial="{{index}}">{{item}}</button>
-  </block>
-  <view>
-    <button type="primary" bindtap="nextWord"  wx:if="{{serial!=wordset.length-1}}">下一词</button>
-    <button type="primary" bindtap="nextWord"  wx:else>结束</button>
+<view style="background-color: {{color.backgroundColor}}; height: 100%; color: {{color.textColor}};">
+  <view class='flex_container'>
+    <view class="word_content">
+      <text class="word_content_text">{{wordset[serial].content}}\n</text>
+      <text class="word_content_hint">{{hint}}</text>
+    </view>
+    <block wx:for="{{shuffled.anwserCollection}}" wx:if="{{currentlySelected==-1}}">
+      <button class="anwser_item" type="default" bindtap="selectAnwser" data-buttom-serial="{{index}}">{{item}}</button>
+    </block>
+    <view>
+      <button type="primary" bindtap="nextWord" wx:if="{{serial!=wordset.length-1}}">下一词</button>
+      <button type="primary" bindtap="nextWord" wx:else>结束</button>
+    </view>
   </view>
 </view>

@@ -20,6 +20,8 @@ Page({
       const app: IAppOption = getApp();
       console.log('initializing')
       this.setData({
+        // 配色表
+        color: app.globalData.colorScheme,
         // 单词集数据
         wordset: data.data,
         // 当前所背单词在单词集中的顺序
@@ -99,6 +101,7 @@ Page({
         newHint = "回答错误！该单词的意思是\n" + (currentData.shuffled as ShuffledWordData).anwserCollection[(currentData.shuffled as ShuffledWordData).correctAnswerPosition]
       }
       this.setData({
+        color: currentData.color,
         wordset: currentData.wordset,
         serial: currentData.serial,
         shuffled: currentData.shuffled,
@@ -116,6 +119,8 @@ Page({
       const app: IAppOption = getApp();
       const currentData = this.data as AnyObject;
       this.setData({
+        // 原地 tp 配色表
+        color: currentData.color,
         // 原地 tp 单词集数据
         wordset: currentData.wordset,
         // 序号指向下一词
