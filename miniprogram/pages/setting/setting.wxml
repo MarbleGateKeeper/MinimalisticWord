@@ -14,7 +14,7 @@
       </view>
     </view>
     <view class="setting_colorScheme">
-      <text class="setting_colorScheme_title">配色选项：<text wx:if="{{nightmode}}">夜间模式</text><text wx:else>标准模式</text></text>
+      <text class="setting_colorScheme_title">配色选项：<text wx:if="{{nightmode}}" style="color: {{color.emphTextColor}};">夜间模式</text><text wx:else style="color: {{color.emphTextColor}};">标准模式</text></text>
       <view class="setting_colorScheme_body">
         <switch checked="{{nightmode}}" bindchange="colorSchemeChange" />
       </view>

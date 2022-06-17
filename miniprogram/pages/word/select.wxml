@@ -6,7 +6,7 @@
   <view class='flex_container'>
     <swiper hidden="{{loading}}" class='word_collection_chooser' indicator-dots='true'>
       <swiper-item class='word_collection_item' wx:key='{{ item.item }}' wx:for='{{ collection }}'>
-        <button type="default" bindtap="selectWordCollection" data-word-book-name="{{item.item}}">{{item.name}}</button>
+        <button type="default" bindtap="selectWordCollection" data-word-book-name="{{item.item}}" style="background-color: {{color.componentColor}}; color: {{color.textColor}};">{{item.name}}</button>
       </swiper-item>
     </swiper>
 

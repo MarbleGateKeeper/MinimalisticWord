@@ -6,11 +6,11 @@
       <text class="word_content_hint">{{hint}}</text>
     </view>
     <block wx:for="{{shuffled.anwserCollection}}" wx:if="{{currentlySelected==-1}}">
-      <button class="anwser_item" type="default" bindtap="selectAnwser" data-buttom-serial="{{index}}">{{item}}</button>
+      <button class="anwser_item" type="default" bindtap="selectAnwser" data-buttom-serial="{{index}}" style="background-color: {{color.componentColor}}; color: {{color.textColor}};">{{item}}</button>
     </block>
     <view>
-      <button type="primary" bindtap="nextWord" wx:if="{{serial!=wordset.length-1}}">下一词</button>
-      <button type="primary" bindtap="nextWord" wx:else>结束</button>
+      <button type="primary" bindtap="nextWord" wx:if="{{serial!=wordset.length-1}}" style="background-color: {{color.emphTextColor}}; color: {{color.textColor}};">下一词</button>
+      <button type="primary" bindtap="nextWord" wx:else style="background-color: {{color.emphTextColor}}; color: {{color.textColor}};">结束</button>
     </view>
   </view>
 </view>

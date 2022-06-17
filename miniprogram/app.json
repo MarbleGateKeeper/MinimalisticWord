@@ -6,8 +6,8 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "backgroundColor": "#7B7D7D",
-    "navigationBarBackgroundColor": "#7B7D7D",
+    "backgroundColor": "#181818",
+    "navigationBarBackgroundColor": "#181818",
     "navigationBarTitleText": "极简单词",
     "navigationBarTextStyle": "white"
   },
