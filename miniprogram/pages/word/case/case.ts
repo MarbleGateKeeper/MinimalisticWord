@@ -1,5 +1,5 @@
 import { IAppOption } from "../../../../typings";
-import { ShuffledWordData, WordDataSet } from "../../../utils/wordUtils";
+import { ShuffledWordData, WordData, WordDataSet } from "../../../utils/wordUtils";
 
 // pages/word/case/case.ts
 Page({
@@ -18,7 +18,6 @@ Page({
     // 监听 acceptDataFromOpenerPage 事件，获取上一页面通过 eventChannel 传送到当前页面的数据
     eventChannel.on('acceptDataFromOpenerPage', (data) => {
       const app: IAppOption = getApp();
-      console.log('initializing')
       this.setData({
         // 配色表
         color: app.globalData.colorScheme,
@@ -35,7 +34,6 @@ Page({
         // 提示词，直接扔到 data 里好了
         hint: '请选择正确的含义'
       });
-      console.log('initializing2')
     });
   },
 
@@ -114,7 +112,7 @@ Page({
   },
 
   nextWord: function (_e: WechatMiniprogram.BaseEvent) {
-    // 非最后一词
+    // 非最后一词逻辑
     if ((this.data as AnyObject).serial != (this.data as AnyObject).wordset.length - 1) {
       const app: IAppOption = getApp();
       const currentData = this.data as AnyObject;
@@ -135,20 +133,35 @@ Page({
         hint: '请选择正确的含义'
       });
     }
-    //最后一词
+    // 最后一词逻辑
     else {
-      wx.navigateBack();
+      // 判断是否全部正确
+      if(((this.data as AnyObject).selectionCase as SelectionCase).isAllCorrect()){
+        // 全部正确，直接返回主界面
+        wx.navigateBack();
+      } else {
+        // 否则带着错词进入学单词界面
+        const newWordSet = ((this.data as AnyObject).selectionCase as SelectionCase).exportIncorrectWordSet((this.data as AnyObject).wordset);
+        wx.navigateTo({
+          url: "../learn/learn",
+          // 发送数据到学单词页面
+          success: function (navRes) {
+            navRes.eventChannel.emit('acceptDataFromOpenerPage', newWordSet)
+          }
+        })
+      }
+      
     }
   }
 })
 
-
+// 记录所选选项的结构
 interface Selection {
   serial: number,
   correctness?: boolean
 }
 
-// 保存已选择的选项
+// 保存所有已选选项的结构
 class SelectionCase {
   public data: Selection[];
   constructor(size: number) {
@@ -165,5 +178,22 @@ class SelectionCase {
   set(serial: number, correct: boolean): SelectionCase {
     this.data[serial].correctness = correct;
     return this;
+  }
+
+  isAllCorrect(): boolean{
+    const notCorrect = (data: Selection) => !(data.correctness);
+    return this.data.findIndex(notCorrect) == -1;
+  }
+
+  // 导出错误选项
+  exportIncorrectWordSet(originalWordDataSet: Array<WordData>): Array<WordData> | undefined {
+    if(this.isAllCorrect()) return undefined;
+    let ret: Array<WordData> = []
+    originalWordDataSet.forEach((value,index)=>{
+      if(!this.data[index].correctness){
+        ret.push(value)
+      }
+    })
+    return ret;
   }
 }

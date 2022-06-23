@@ -2,7 +2,8 @@
   "pages": [
     "pages/word/select",
     "pages/setting/setting",
-    "pages/word/case/case"
+    "pages/word/case/case",
+    "pages/word/learn/learn"
   ],
   "window": {
     "backgroundTextStyle": "light",

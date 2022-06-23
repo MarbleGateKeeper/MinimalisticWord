@@ -8,7 +8,8 @@ App<IAppOption>({
       wordSetSize: 10,
       distractorSize: 3
     },
-    colorScheme: standardColorScheme
+    colorScheme: standardColorScheme,
+    learnMode: true
   },
   
   onLaunch() {

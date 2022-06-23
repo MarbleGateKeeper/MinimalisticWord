@@ -22,7 +22,8 @@ Page({
       color: app.globalData.colorScheme,
       loading: false,
       // 加载单词集
-      collection: wordBookMap
+      collection: wordBookMap,
+      learnMode: app.globalData.learnMode
     });
   },
 
@@ -43,7 +44,8 @@ Page({
       // 因为从设置切换回本页不是重新加载界面，所以此处要重新加载一次配色表
       color: app.globalData.colorScheme,
       loading: currentData.loading,
-      collection: currentData.collection
+      collection: currentData.collection,
+      learnMode: currentData.learnMode
     });
   },
 
@@ -84,17 +86,43 @@ Page({
 
   selectWordCollection: function (e: WechatMiniprogram.BaseEvent) {
     const selected: string = e.currentTarget.dataset.wordBookName;
+    const currentData = this.data as AnyObject;
     // 创建单词集
     const app: IAppOption = getApp();
     createWordDataSet(selected, app.globalData.wordSetting.wordSetSize).then(dataRes => {
-      // 跳转到背单词页面
-      wx.navigateTo({
-        url: "./case/case",
-        // 发送数据到背单词页面
-        success: function(navRes){
-          navRes.eventChannel.emit('acceptDataFromOpenerPage', dataRes)
-        }
-      })
+      if (currentData.learnMode) {
+        // 跳转到学单词页面
+        wx.navigateTo({
+          url: "./learn/learn",
+          // 发送数据到学单词页面
+          success: function (navRes) {
+            navRes.eventChannel.emit('acceptDataFromOpenerPage', dataRes.data)
+          }
+        })
+      } else {
+        // 跳转到背单词页面
+        wx.navigateTo({
+          url: "./case/case",
+          // 发送数据到背单词页面
+          success: function (navRes) {
+            navRes.eventChannel.emit('acceptDataFromOpenerPage', dataRes)
+          }
+        })
+      }
+
     });
+  },
+
+  modeChange: function (e: WechatMiniprogram.SwitchChange) {
+    const app: IAppOption = getApp();
+    const currentData = this.data as AnyObject;
+    const nv = e.detail.value;
+    this.setData({
+      color: app.globalData.colorScheme,
+      loading: currentData.loading,
+      collection: currentData.collection,
+      learnMode: nv
+    });
+    app.globalData.learnMode = nv;
   }
 })

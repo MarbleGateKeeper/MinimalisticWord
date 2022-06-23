@@ -8,7 +8,8 @@ interface IAppOption {
   globalData: {
     userInfo?: WechatMiniprogram.UserInfo,
     wordSetting: WordSetting,
-    colorScheme: ColorScheme
+    colorScheme: ColorScheme,
+    learnMode: boolean
   }
-  userInfoReadyCallback?: WechatMiniprogram.GetUserInfoSuccessCallback,
+  userInfoReadyCallback?: WechatMiniprogram.GetUserInfoSuccessCallback
 }

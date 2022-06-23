@@ -1,0 +1,14 @@
+<!--pages/word/learn/learn.wxml-->
+<!--pages/word/case/case.wxml-->
+<view style="background-color: {{color.backgroundColor}}; height: 100%; color: {{color.textColor}};">
+  <view class='flex_container'>
+    <view class="word">
+      <text class="word_text">{{wordset[serial].content}}\n</text>
+      <text class="word_meaning">{{wordset[serial].meaning}}</text>
+    </view>
+    <view>
+      <button type="primary" bindtap="nextWord" wx:if="{{serial!=wordset.length-1}}" style="background-color: {{color.emphTextColor}}; color: {{color.textColor}};">下一词</button>
+      <button type="primary" bindtap="nextWord" wx:else style="background-color: {{color.emphTextColor}}; color: {{color.textColor}};">结束</button>
+    </view>
+  </view>
+</view>
