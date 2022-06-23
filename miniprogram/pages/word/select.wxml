@@ -1,15 +1,17 @@
 <!--pages/menu/select.wxml-->
-<view style="background-color: {{color.backgroundColor}}; height: 100%; color: {{color.textColor}};">
+<view style="background-color: {{color.backgroundColor}}; height:100%; color: {{color.textColor}};">
+<view class="header">
   <view class="title" hidden="{{loading}}">
     <text class="title_text">请选择词库</text>
   </view>
   <view class="mode_selector" hidden="{{loading}}">
     <text class="mode_selector_title"><text wx:if="{{learnMode}}" style="color: {{color.emphTextColor}};">学习模式</text><text wx:else style="color: {{color.emphTextColor}};">背诵模式</text></text>
     <view class="mode_selector_body">
-      <switch checked="{{learnMode}}" bindchange="modeChange" />
+      <switch checked="{{learnMode}}" bindchange="modeChange" color="{{color.componentColor}}"/>
     </view>
   </view>
-  <view class='flex_container'>
+</view>
+  <view>
     <swiper hidden="{{loading}}" class='word_collection_chooser' indicator-dots='true'>
       <swiper-item class='word_collection_item' wx:key='{{ item.item }}' wx:for='{{ collection }}'>
         <button type="default" bindtap="selectWordCollection" data-word-book-name="{{item.item}}" style="background-color: {{color.componentColor}}; color: {{color.textColor}};">{{item.name}}</button>

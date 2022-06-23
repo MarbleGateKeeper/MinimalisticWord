@@ -29,7 +29,7 @@ Page({
         // 当前所背单词在单词集中的顺序
         serial: 0,
         // 夜间模式
-        nightmode: app.globalData.colorScheme = nightColorScheme
+        nightmode: app.globalData.colorScheme == nightColorScheme
       });
     });
 
@@ -104,6 +104,19 @@ Page({
       const pageNum = getCurrentPages().length;
       wx.navigateBack({
         delta: (1-pageNum) * -1
+      });
+    }
+  },
+
+  previousWord: function (_e: WechatMiniprogram.BaseEvent) {
+    if ((this.data as AnyObject).serial != 0) {
+      const currentData = this.data as AnyObject;
+      this.setData({
+        color: currentData.color,
+        wordset: currentData.wordset,
+        // 序号指向上一词
+        serial: currentData.serial - 1,
+        nightmode: currentData.nightmode
       });
     }
   },

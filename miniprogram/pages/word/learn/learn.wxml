@@ -4,13 +4,18 @@
   <view class='flex_container'>
     <view class="word">
       <text class="word_text">{{wordset[serial].content}}\n</text>
-      <text class="word_meaning">{{wordset[serial].meaning}}</text>
+      <view class="play">
+        <image class="play_icon" bindtap="playVoice" wx:if="{{!nightmode}}" src="../../../assets/icon/play.png"></image>
+        <image class="play_icon" bindtap="playVoice" wx:else src="../../../assets/icon/play-nightmode.png"></image>
+      </view>
     </view>
-    <view class="play">
-      <image class="play_icon" bindtap="playVoice" wx:if="{{!nightmode}}" src="../../../assets/icon/play.png"></image>
-      <image class="play_icon" bindtap="playVoice" wx:else src="../../../assets/icon/play-nightmode.png"></image>
+    <view class="word_meaning">
+      <text>{{wordset[serial].meaning}}</text>
+    </view>>
+    <view class="previous">
+      <button type="primary" bindtap="previousWord" wx:if="{{serial!=0}}" style="background-color: {{color.emphTextColor}}; color: {{color.textColor}};">上一词</button>
     </view>
-    <view>
+    <view class="next">
       <button type="primary" bindtap="nextWord" wx:if="{{serial!=wordset.length-1}}" style="background-color: {{color.emphTextColor}}; color: {{color.textColor}};">下一词</button>
       <button type="primary" bindtap="nextWord" wx:else style="background-color: {{color.emphTextColor}}; color: {{color.textColor}};">结束</button>
     </view>

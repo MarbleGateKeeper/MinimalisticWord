@@ -1,1 +1,23 @@
 /* pages/word/case/case.wxss */
+.word_content{
+  padding: 10% 10% 5% 10%;
+}
+
+.word_content_text{
+  font-size: 5vh;
+}
+
+.word_content_hint{
+  font-size: 3vh;
+}
+
+.anwser_sets{
+  padding: 0% 10% 0% 10%;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+}
+.anwser_item{
+  margin: 0% 0% 4% 0%;
+}
+

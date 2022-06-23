@@ -1,1 +1,20 @@
 /* pages/menu/select.wxss */
+.header{
+  padding: 10% 10% 10% 10%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.title{
+  width: 50%;
+}
+
+.mode_selector{
+  justify-content: space-between;
+  align-items: flex-end;
+  align-content: flex-start;
+}
+
+.mode_selector_body{
+  padding-top: 10%;
+}

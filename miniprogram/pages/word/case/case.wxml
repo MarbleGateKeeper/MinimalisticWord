@@ -5,10 +5,14 @@
       <text class="word_content_text">{{wordset[serial].content}}\n</text>
       <text class="word_content_hint">{{hint}}</text>
     </view>
-    <block wx:for="{{shuffled.anwserCollection}}" wx:if="{{currentlySelected==-1}}">
-      <button class="anwser_item" type="default" bindtap="selectAnwser" data-buttom-serial="{{index}}" style="background-color: {{color.componentColor}}; color: {{color.textColor}};">{{item}}</button>
-    </block>
-    <view>
+    <view class="anwser_sets">
+      <view wx:for="{{shuffled.anwserCollection}}" wx:if="{{currentlySelected==-1}}">
+        <view class="anwser_item">
+          <button type="default" bindtap="selectAnwser" data-buttom-serial="{{index}}" style="background-color: {{color.componentColor}}; color: {{color.textColor}}; width: 100%; height: 9vh;">{{item}}</button>
+        </view>
+      </view>
+    </view>
+    <view class="next">
       <button type="primary" bindtap="nextWord" wx:if="{{serial!=wordset.length-1}}" style="background-color: {{color.emphTextColor}}; color: {{color.textColor}};">下一词</button>
       <button type="primary" bindtap="nextWord" wx:else style="background-color: {{color.emphTextColor}}; color: {{color.textColor}};">结束</button>
     </view>

@@ -1,22 +1,22 @@
 <!--pages/setting/setting.wxml-->
 <view style="background-color: {{color.backgroundColor}}; height: 100%; color: {{color.textColor}};">
   <view class="settings">
-    <view class="setting_wordSetSize">
-      <text class="setting_wordSetSize_title">单词集大小</text>
-      <view class="setting_wordSetSize_body">
-        <slider bindchange="wordSetSizeChange" bindchanging="wordSetSizeChange" min="10" max="50" value="{{wordSetSize}}" show-value />
+    <view class="setting_item">
+      <text class="setting_item_title">单词集大小：<text style="color: {{color.emphTextColor}};">{{common.wordSetSize}}</text></text>
+      <view class="setting_item_body">
+        <slider bindchange="wordSetSizeChange" bindchanging="wordSetSizeChange" min="10" max="50" value="{{wordSetSize}}" />
       </view>
     </view>
-    <view class="setting_distractorSize">
-      <text class="setting_distractorSize_title">干扰项数量</text>
-      <view class="setting_distractorSize_body">
-        <slider bindchange="distractorSizeChange" bindchanging="distractorSizeChange" min="1" max="6" value="{{distractorSize}}" show-value />
+    <view class="setting_item">
+      <text class="setting_item_title">干扰项数量：<text style="color: {{color.emphTextColor}};">{{common.distractorSize}}</text></text>
+      <view class="setting_item_body">
+        <slider bindchange="distractorSizeChange" bindchanging="distractorSizeChange" min="1" max="6" value="{{distractorSize}}" />
       </view>
     </view>
-    <view class="setting_colorScheme">
-      <text class="setting_colorScheme_title">配色选项：<text wx:if="{{nightmode}}" style="color: {{color.emphTextColor}};">夜间模式</text><text wx:else style="color: {{color.emphTextColor}};">标准模式</text></text>
-      <view class="setting_colorScheme_body">
-        <switch checked="{{nightmode}}" bindchange="colorSchemeChange" />
+    <view class="setting_item switch_setting_item">
+      <text class="setting_item_title switch_setting_item_title">配色选项：\n<text wx:if="{{nightmode}}" style="color: {{color.emphTextColor}};">夜间模式</text><text wx:else style="color: {{color.emphTextColor}};">标准模式</text></text>
+      <view class="setting_item_body">
+        <switch checked="{{nightmode}}" bindchange="colorSchemeChange" color="{{color.componentColor}}"/>
       </view>
     </view>
   </view>

@@ -1,1 +1,24 @@
 /* pages/word/learn/learn.wxss */
+.word{
+  padding: 10% 10% 5% 10%;
+  display: flex;
+}
+
+.word_text{
+  font-size: 5vh;
+  width: 90%;
+}
+
+.word_meaning{
+  padding: 0% 10% 5% 10%;
+  font-size: 3vh;
+}
+
+image{
+  height: 5vh;
+  width: 5vh;
+}
+
+.previous{
+  padding-bottom: 3%;
+}

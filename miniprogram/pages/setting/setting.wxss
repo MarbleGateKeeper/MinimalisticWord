@@ -1,1 +1,26 @@
 /* pages/setting/setting.wxss */
+.settings{
+  padding: 10% 10% 10% 10%;
+}
+
+.setting_item{
+  margin-bottom: 10%;
+}
+
+slider{
+  margin-top: 5%;
+}
+
+switch{
+  width: 50%;
+}
+
+.switch_setting_item{
+  padding: 2% 4% 0% 1%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.switch_setting_item_title{
+  width: 50%;
+}
