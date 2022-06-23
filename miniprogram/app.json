@@ -19,8 +19,8 @@
       {
         "pagePath": "pages/word/select",
         "text": "背词",
-        "iconPath": "assets/icon/submit.png",
-        "selectedIconPath": "assets/icon/submit.png"
+        "iconPath": "assets/icon/word.png",
+        "selectedIconPath": "assets/icon/word.png"
       },
       {
         "pagePath": "pages/setting/setting",

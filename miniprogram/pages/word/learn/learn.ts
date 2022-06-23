@@ -1,5 +1,6 @@
 import { IAppOption } from "../../../../typings";
-
+import { nightColorScheme } from "../../../utils/settingUtils";
+import { WordData } from "../../../utils/wordUtils";
 // pages/word/learn/learn.ts
 Page({
 
@@ -9,6 +10,8 @@ Page({
   data: {
 
   },
+
+  
 
   /**
    * 生命周期函数--监听页面加载
@@ -25,8 +28,13 @@ Page({
         wordset: data,
         // 当前所背单词在单词集中的顺序
         serial: 0,
+        // 夜间模式
+        nightmode: app.globalData.colorScheme = nightColorScheme
       });
     });
+
+    // 初始化播放器
+    iniAudioPlayer();
   },
 
   /**
@@ -83,12 +91,11 @@ Page({
     if ((this.data as AnyObject).serial != (this.data as AnyObject).wordset.length - 1) {
       const currentData = this.data as AnyObject;
       this.setData({
-        // 原地 tp 配色表
         color: currentData.color,
-        // 原地 tp 单词集数据
         wordset: currentData.wordset,
         // 序号指向下一词
         serial: currentData.serial + 1,
+        nightmode: currentData.nightmode
       });
     }
     // 最后一词逻辑
@@ -99,5 +106,23 @@ Page({
         delta: (1-pageNum) * -1
       });
     }
+  },
+
+  playVoice: function (_e: WechatMiniprogram.BaseEvent){
+    const srcUrl = "http://dict.youdao.com/dictvoice?audio=" + ((this.data as AnyObject).wordset[(this.data as AnyObject).serial] as WordData).content;
+    if(audioPlayer==null) iniAudioPlayer();
+    if(audioPlayer!=null){
+      audioPlayer.src = srcUrl;
+      audioPlayer.play()
+    }
   }
 })
+
+let audioPlayer: WechatMiniprogram.InnerAudioContext | null = null;
+
+function iniAudioPlayer(){
+  audioPlayer = wx.createInnerAudioContext({
+    useWebAudioImplement: true
+  });
+}
+

@@ -6,6 +6,10 @@
       <text class="word_text">{{wordset[serial].content}}\n</text>
       <text class="word_meaning">{{wordset[serial].meaning}}</text>
     </view>
+    <view class="play">
+      <image class="play_icon" bindtap="playVoice" wx:if="{{!nightmode}}" src="../../../assets/icon/play.png"></image>
+      <image class="play_icon" bindtap="playVoice" wx:else src="../../../assets/icon/play-nightmode.png"></image>
+    </view>
     <view>
       <button type="primary" bindtap="nextWord" wx:if="{{serial!=wordset.length-1}}" style="background-color: {{color.emphTextColor}}; color: {{color.textColor}};">下一词</button>
       <button type="primary" bindtap="nextWord" wx:else style="background-color: {{color.emphTextColor}}; color: {{color.textColor}};">结束</button>
