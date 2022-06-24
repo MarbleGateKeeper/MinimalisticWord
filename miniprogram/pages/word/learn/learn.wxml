@@ -1,5 +1,4 @@
 <!--pages/word/learn/learn.wxml-->
-<!--pages/word/case/case.wxml-->
 <view style="background-color: {{color.backgroundColor}}; height: 100%; color: {{color.textColor}};">
   <view class='flex_container'>
     <view class="word">
